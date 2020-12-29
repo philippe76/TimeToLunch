@@ -5,7 +5,7 @@ import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 const Breakfast = ({modal}) => {
     return (
         <View style={styles.breakfastContainer}>
-            <TouchableOpacity style={styles.closeButton} onPress={() =>modal(false)}>
+            <TouchableOpacity style={styles.closeButton} onPress={() => modal(false)}>
                 <Text style={styles.closeText}>
                     CLOSE
                 </Text>

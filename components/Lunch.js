@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import MenuCard from './MenuCard'
 
 
 const Lunch = ({modal}) => {
     return (
         <View style={styles.lunchContainer}>
+            <Text style={styles.title}>Lunch</Text>
+            <MenuCard />
             <TouchableOpacity style={styles.closeButton} onPress={() =>modal(false)}>
                 <Text style={styles.closeText}>
                     CLOSE
@@ -20,6 +23,12 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',        
+    },
+    title: {
+        position: 'absolute',
+        top: 30,
+        left: 30,
+        fontSize: 20
     },
     closeButton: {
         borderWidth: 3,
