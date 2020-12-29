@@ -44,12 +44,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logoContainer: {
-    width: 230,
-    height: 230,
+    width: 210,
+    height: 210,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 230/2,
-    borderWidth: 2,
+    borderRadius: 210/2,
+    borderWidth: 3,
     borderColor: '#e7af77',
     position: 'absolute',
     top: 100
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     color: '#e7af77',
     fontSize: 45,
     fontFamily: 'Pacifico-Regular',
-    marginTop: 50
+    marginTop: 150
   },
   menu: {
     backgroundColor: '#e7af77',
