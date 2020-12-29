@@ -5,7 +5,8 @@ import Breakfast from './Breakfast'
 
 const Home = () => {
 
-    const [modalVisible, setModalVisible] = useState(false)
+    const [lunchVisible, setLunchVisible] = useState(false);
+    const [breakfastVisible, setBreakfastVisible] = useState(false);
 
     return (
         <>
@@ -17,16 +18,16 @@ const Home = () => {
       </View>
 
       <View style={styles.menu}>        
-        <TouchableOpacity style={{...styles.menuContainer, ...styles.lunchContainer}} onPress={()=> setModalVisible(true)}>
-            <Modal visible={modalVisible} animationType='slide'>
-                <Lunch modal={setModalVisible} />
+        <TouchableOpacity style={{...styles.menuContainer, ...styles.lunchContainer}} onPress={()=> setLunchVisible(true)}>
+            <Modal visible={lunchVisible} animationType='slide'>
+                <Lunch modal={setLunchVisible} />
             </Modal>
             <Text style={{...styles.menuText, ...styles.lunchText}}>Lunch</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{...styles.menuContainer, ...styles.breakfastContainer}} onPress={()=> setModalVisible(true)}>
-            <Modal visible={modalVisible} animationType='slide'>
-                <Breakfast modal={setModalVisible} />
+        <TouchableOpacity style={{...styles.menuContainer, ...styles.breakfastContainer}} onPress={()=> setBreakfastVisible(true)}>
+            <Modal visible={breakfastVisible} animationType='slide'>
+                <Breakfast modal={setBreakfastVisible} />
             </Modal>
             <Text style={{...styles.menuText, ...styles.breakfastText}}>Breakfast</Text>
         </TouchableOpacity>
