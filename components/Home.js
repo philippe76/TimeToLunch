@@ -1,7 +1,12 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Button } from 'react-native';
+import Lunch from './Lunch';
+import Breakfast from './Breakfast'
 
 const Home = () => {
+
+    const [modalVisible, setModalVisible] = useState(false)
+
     return (
         <>
       <View style={styles.container}>  
@@ -10,11 +15,19 @@ const Home = () => {
         </View>  
         <Text style={styles.textTitle}>Time's To Lunch</Text>
       </View>
-      <View style={styles.menu}>
-        <TouchableOpacity style={styles.lunchContainer}>
+
+      <View style={styles.menu}>        
+        <TouchableOpacity style={{...styles.menuContainer, ...styles.lunchContainer}} onPress={()=> setModalVisible(true)}>
+            <Modal visible={modalVisible} animationType='slide'>
+                <Lunch modal={setModalVisible} />
+            </Modal>
             <Text style={{...styles.menuText, ...styles.lunchText}}>Lunch</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.breakfastContainer}>
+
+        <TouchableOpacity style={{...styles.menuContainer, ...styles.breakfastContainer}} onPress={()=> setModalVisible(true)}>
+            <Modal visible={modalVisible} animationType='slide'>
+                <Breakfast modal={setModalVisible} />
+            </Modal>
             <Text style={{...styles.menuText, ...styles.breakfastText}}>Breakfast</Text>
         </TouchableOpacity>
       </View>
@@ -56,18 +69,18 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
-  lunchContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    height:60
-  },
-  breakfastContainer: {
-    backgroundColor: '#2b3d28',
+  menuContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
     height:60
+  },
+  lunchContainer: {
+    backgroundColor: '#e7af77',
+  },
+  breakfastContainer: {
+    backgroundColor: '#2b3d28',
   },
   menuText: {
     fontFamily: 'CrimsonText-SemiBold',
