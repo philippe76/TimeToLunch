@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
-import { MaterialIcons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from './MenuCard';
 import { lunchDatas } from '../datas/lunchData'
 
@@ -10,7 +10,7 @@ const Lunch = ({modal}) => {
         <View style={styles.lunchContainer}>
             <View style={styles.lunchHeader}>
                 <Text style={styles.lunchTitle}>Lunch</Text>
-                <MaterialCommunityIcons name='close-circle-outline' size={30} color={'#2b3d28'} onPress={() => modal(false)}/>
+                <MaterialIcons name='keyboard-backspace' size={30} color={'#2b3d28'} onPress={() => modal(false)}/>
             </View>
 
             <FlatList 
