@@ -4,7 +4,6 @@ export const images = {
         'hummus': require('../assets/lunchPics/hummus.png'),
         'kothimbir': require('../assets/lunchPics/kothimbir.png'),
         'pumpkinSoup': require('../assets/lunchPics/pumpkinSoup.png'),
-        'quesadillas': require('../assets/lunchPics/quesadillas.png'),
-        
+        'quesadillas': require('../assets/lunchPics/quesadillas.png')        
     }
 }
