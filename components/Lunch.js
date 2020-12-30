@@ -1,18 +1,46 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import MenuCard from './MenuCard'
+import { MaterialIcons } from '@expo/vector-icons';
+import MenuCard from './MenuCard';
+// import { lunchDatas } from '../datas/lunchData'
 
+const lunchDatas = [
+    {   picRef: 'hummus',
+        title: 'Hummus',
+        price: '6.90€'
+    },
+    {
+        picRef: 'kothimbir',
+        title: 'Kothimbir Vadi',
+        price: '12.90€'
+    },    
+    {
+        picRef: 'pumpkinSoup',
+        title: 'Pumpkin Soup With Pumpkin Seeds',
+        price: '8.90€'
+    },
+    {
+        picRef: 'quesadillas',
+        title: 'Quesadillas With Pico de Gallo',
+        price: '10.90€'
+    },
+
+]
 
 const Lunch = ({modal}) => {
     return (
         <View style={styles.lunchContainer}>
             <Text style={styles.title}>Lunch</Text>
-            <MenuCard />
-            <TouchableOpacity style={styles.closeButton} onPress={() =>modal(false)}>
+            <MaterialIcons name='close' style={styles.close}/>
+                {lunchDatas.map(item => {
+                    return  <MenuCard picRef={item.picRef} title={item.title} price={item.price}/>
+                })}
+           
+            {/* <TouchableOpacity style={styles.closeButton} onPress={() =>modal(false)}>
                 <Text style={styles.closeText}>
                     CLOSE
                 </Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
     )
 }
@@ -29,6 +57,14 @@ const styles = StyleSheet.create({
         top: 30,
         left: 30,
         fontSize: 20
+    },
+    close: {
+        fontSize: 20,
+        borderRadius: 100,
+        borderWidth: 1,
+        width:20,
+        borderRadius: 20/2,
+        borderColor: '#2b3d28'
     },
     closeButton: {
         borderWidth: 3,

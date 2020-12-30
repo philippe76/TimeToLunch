@@ -1,28 +1,21 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-
-// import object (images, titles...) from lunch OR breakfast file
+import {images} from '../datas/images'
 
 
-const MenuCard = () => {
-    return (
+
+const MenuCard = ({picRef, title, price}) => {
+    return ( 
         <View style={styles.container}>
-            <Image source={require('../assets/images/hummus.jpg')} style={styles.image}/>
-            <MaterialIcons name='close' style={styles.close}/>
+            <Image source={images.picRef[picRef]} style={styles.image}/>
+            <Text>{title}</Text>
+            <Text>{price}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    close: {
-        fontSize: 20,
-        borderRadius: 100,
-        borderWidth: 1,
-        width:20,
-        borderRadius: 20/2,
-        borderColor: '#2b3d28'
-    },
+
     image: {
         //change size in gimp
         width: 200,
