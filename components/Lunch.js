@@ -1,11 +1,14 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import { StyleSheet, View, Text, FlatList, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from './MenuCard';
-import { lunchDatas } from '../datas/lunchData'
+import { lunchDatas } from '../datas/lunchData';
 
 
 const Lunch = ({modal}) => {
+
+
+
     return (
         <View style={styles.lunchContainer}>
             <View style={styles.lunchHeader}>
@@ -15,7 +18,12 @@ const Lunch = ({modal}) => {
 
             <FlatList 
                 data={lunchDatas}
-                renderItem={ itemData => <MenuCard picRef={itemData.item.picRef} title={itemData.item.title} price={itemData.item.price}/> }
+                renderItem={ itemData => <MenuCard 
+                    picRef={itemData.item.picRef} 
+                    title={itemData.item.title}
+                    recipe={itemData.item.recipe} 
+                    price={itemData.item.price}   
+                /> }
                 keyExtractor={item => item.id}
             />
         </View>

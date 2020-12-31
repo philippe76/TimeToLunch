@@ -1,12 +1,14 @@
-import React from 'react';
-import { StyleSheet, View, Image, Text, TouchableOpacity } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Image, Text, Modal } from 'react-native';
 import {images} from '../datas/images';
 import { MaterialIcons } from '@expo/vector-icons';
+import AddCard from './AddCard'
 
 
+const MenuCard = ({ picRef, title, recipe, price }) => {
 
+    const [addCardVisible, setAddCardVisible] = useState(false);
 
-const MenuCard = ({picRef, title, price}) => {
     return ( 
         <View style={styles.container}>
             <Image source={images.picRef[picRef]} style={styles.image}/>
@@ -15,8 +17,17 @@ const MenuCard = ({picRef, title, price}) => {
                     <Text style={styles.title}>{title}</Text>
                     <Text style={styles.price}>{price}</Text>
                 </View>
-                <MaterialIcons name='add-circle-outline' size={33} style={styles.addIcon}/>
+                <MaterialIcons name='add-circle-outline' size={33} style={styles.addIcon} onPress={() => setAddCardVisible(true)}/>
             </View>
+            <Modal visible={addCardVisible} animationType='slide'>
+               <AddCard 
+                addMeal={setAddCardVisible} 
+                mealPic={picRef}
+                mealTitle={title}
+                mealRecipe={recipe}
+                mealPrice={price}
+               /> 
+            </Modal>
         </View>
     )
 }
