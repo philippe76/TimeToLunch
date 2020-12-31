@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {images} from '../datas/images';
 
@@ -27,6 +27,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice }) => {
         <View style={styles.container}>
             <Image source={images.picRef[mealPic]} style={styles.image}/>
             <View style={styles.mealData}>
+                <AntDesign name='closecircleo' style={styles.close} size={33} color={'#e7af77'} onPress={() => addMeal(false)}/>
                 <Text style={styles.title}> {mealTitle} </Text>
                 <Text style={styles.recipe}> {mealRecipe} </Text>
                 <View style={styles.command}>
@@ -37,7 +38,9 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice }) => {
                     </View>                    
                     <Text style={styles.price}>{price.toFixed(2)}€</Text>
                 </View>
-                <AntDesign name='closecircleo' size={30} color={'#e7af77'} onPress={() => addMeal(false)}/>
+                <TouchableOpacity style={styles.addToBag}>
+                    <Text style={styles.addToBagText}>ADD TO BAG</Text>
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -54,20 +57,24 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
     },
+    close: {
+        marginVertical: 25
+    },
     mealData: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     title: {
         color: '#e7af77',
-        fontSize: 40,
+        fontSize: 37,
         fontFamily: 'Pacifico-Regular',
-        marginTop: 80
+        maxWidth: 350,
+        textAlign: 'center',
     },
     recipe: {
         color: '#e7af77',
         fontFamily: 'CrimsonText-SemiBold',
-        fontSize: 18,
+        fontSize: 19,
         width: '75%',
         textAlign: 'center',
         lineHeight: 20,
@@ -79,7 +86,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         paddingVertical: 30,
-        marginBottom: 50
+        marginBottom: 30
     },
     numberContainer: {
         flexDirection: 'row',
@@ -102,6 +109,19 @@ const styles = StyleSheet.create({
         color: '#e7af77',
         fontSize: 28,
         fontWeight: 'bold'
+    },
+    addToBag: {
+        backgroundColor: '#e7af77',
+        width: '65%',
+        borderRadius: 25,
+        padding: 12
+    },
+    addToBagText: {
+        color: '#2b3d28',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        fontFamily: 'CrimsonText-SemiBold',
+        fontSize: 18
     }
 })
 
