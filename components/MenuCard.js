@@ -15,7 +15,7 @@ const MenuCard = ({ picRef, title, recipe, price }) => {
             <View style={styles.cardInfos}>
                 <View>
                     <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.price}>{price}</Text>
+                    <Text style={styles.price}>{price}€</Text>
                 </View>
                 <MaterialIcons name='add-circle-outline' size={33} style={styles.addIcon} onPress={() => setAddCardVisible(true)}/>
             </View>

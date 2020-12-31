@@ -1,9 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import {images} from '../datas/images';
 
 const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice }) => {
+
+    const [mealNumber, setMealNumber] = useState(1);
+    const [price, setPrice] = useState(parseFloat(mealPrice))
+
+    const AddOne = () => {
+        setMealNumber(mealNumber + 1);
+        setPrice((mealNumber+1) * mealPrice);
+    }
+
+    const RemoveOne = () => {
+        if (mealNumber === 1){
+            setMealNumber(1)
+        }
+        else {
+            setMealNumber(mealNumber - 1);
+            setPrice((mealNumber-1) * mealPrice);
+        }    
+    }
 
     return (
         <View style={styles.container}>
@@ -12,8 +30,12 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice }) => {
                 <Text style={styles.title}> {mealTitle} </Text>
                 <Text style={styles.recipe}> {mealRecipe} </Text>
                 <View style={styles.command}>
-                    <Text style={styles.number}>1</Text>
-                    <Text style={styles.price}>{mealPrice}</Text>
+                    <View style={styles.numberContainer}>
+                        <MaterialIcons size={28} color={'#e7af77'} name='remove' onPress={RemoveOne}/>
+                        <Text style={styles.number}>{mealNumber}</Text>
+                        <MaterialIcons size={28} color={'#e7af77'} name='add' onPress={AddOne}/>
+                    </View>                    
+                    <Text style={styles.price}>{price.toFixed(2)}€</Text>
                 </View>
                 <AntDesign name='closecircleo' size={30} color={'#e7af77'} onPress={() => addMeal(false)}/>
             </View>
@@ -59,6 +81,10 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         marginBottom: 50
     },
+    numberContainer: {
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     number: {
         color: '#e7af77',
         fontSize: 25,
@@ -69,7 +95,8 @@ const styles = StyleSheet.create({
         height: 45,
         borderRadius: 45/2,
         textAlign: 'center',
-        paddingTop: 5
+        paddingTop: 5,
+        marginHorizontal: 15
     },
     price: {
         color: '#e7af77',
