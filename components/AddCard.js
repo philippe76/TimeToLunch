@@ -13,7 +13,6 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
     const AddOne = () => {
         setMealNumber(mealNumber + 1);
         setPrice((mealNumber+1) * mealPrice);
-        console.log(mealType);
     }
 
     const RemoveOne = () => {
@@ -27,22 +26,37 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
     }
 
     return (
-        <View style={ mealType === 'Lunch'? LunchStyle.container : BreakfastStyle.container }>
-            <Image source={ images.picRef[mealPic] } style={ styles.image }/>
-            <View style={ styles.mealData }>
-                <AntDesign name='closecircleo' style={ mealType === 'Lunch'? LunchStyle.close : BreakfastStyle.close } size={33} onPress={() => addMeal(false)}/>
-                <Text style={ mealType === 'Lunch'? LunchStyle.title : BreakfastStyle.title }> {mealTitle} </Text>
-                <Text style={ mealType === 'Lunch'? LunchStyle.recipe : BreakfastStyle.recipe }> {mealRecipe} </Text>
-                <View style={ styles.command }>
-                    <View style={ styles.numberContainer }>
-                        <MaterialIcons size={28} style={ mealType === 'Lunch'? LunchStyle.iconeNumber : BreakfastStyle.iconeNumber } name='remove' onPress={RemoveOne}/>
-                        <Text style={ mealType === 'Lunch'? LunchStyle.number : BreakfastStyle.number }> {mealNumber} </Text>
-                        <MaterialIcons size={28} style={ mealType === 'Lunch'? LunchStyle.iconeNumber : BreakfastStyle.iconeNumber } name='add' onPress={AddOne}/>
+        <View style={mealType === 'Lunch'? LunchStyle.container : BreakfastStyle.container}>
+            <Image source={images.picRef[mealPic]} style={styles.image}/>
+            <View style={styles.mealData}>
+                <AntDesign 
+                    name='closecircleo' 
+                    style={mealType === 'Lunch'? LunchStyle.close : BreakfastStyle.close} 
+                    size={33} 
+                    onPress={() => addMeal(false)}
+                />
+                <Text style={mealType === 'Lunch'? LunchStyle.title : BreakfastStyle.title}> { mealTitle } </Text>
+                <Text style={mealType === 'Lunch'? LunchStyle.recipe : BreakfastStyle.recipe}> { mealRecipe } </Text>
+                <View style={styles.command}>
+                    <View style={styles.numberContainer}>
+                        <MaterialIcons 
+                            size={28} 
+                            style={mealType === 'Lunch'? LunchStyle.iconeNumber : BreakfastStyle.iconeNumber} 
+                            name='remove' 
+                            onPress={RemoveOne}
+                        />
+                        <Text style={mealType === 'Lunch'? LunchStyle.number : BreakfastStyle.number}> { mealNumber } </Text>
+                        <MaterialIcons
+                            size={28}
+                            style={mealType === 'Lunch'? LunchStyle.iconeNumber : BreakfastStyle.iconeNumber} 
+                            name='add' 
+                            onPress={AddOne}
+                        />
                     </View>                    
-                    <Text style={ mealType === 'Lunch'? LunchStyle.price : BreakfastStyle.price }> {price.toFixed(2)}€ </Text>
+                    <Text style={mealType === 'Lunch'? LunchStyle.price : BreakfastStyle.price}> { price.toFixed(2) } € </Text>
                 </View>
-                <TouchableOpacity style={ mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag }>
-                    <Text style={ mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText }>ADD TO BAG</Text>
+                <TouchableOpacity style={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag}>
+                    <Text style={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText}> ADD TO BAG </Text>
                 </TouchableOpacity>
             </View>
         </View>
