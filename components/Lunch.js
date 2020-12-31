@@ -1,19 +1,18 @@
 import React from 'react';
-import { StyleSheet, View, Text, FlatList, Modal } from 'react-native';
+import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from './MenuCard';
 import { lunchDatas } from '../datas/lunchData';
+import { pumpkin, forest } from '../styles/colors'
 
 
 const Lunch = ({modal}) => {
-
-
 
     return (
         <View style={styles.lunchContainer}>
             <View style={styles.lunchHeader}>
                 <Text style={styles.lunchTitle}>Lunch</Text>
-                <MaterialIcons name='keyboard-backspace' size={30} color={'#2b3d28'} onPress={() => modal(false)}/>
+                <MaterialIcons name='keyboard-backspace' size={30} color={forest} onPress={() => modal(false)}/>
             </View>
 
             <FlatList 
@@ -22,7 +21,8 @@ const Lunch = ({modal}) => {
                     picRef={itemData.item.picRef} 
                     title={itemData.item.title}
                     recipe={itemData.item.recipe} 
-                    price={itemData.item.price}   
+                    price={itemData.item.price} 
+                    mealType='Lunch'  
                 /> }
                 keyExtractor={item => item.id}
             />
@@ -32,7 +32,7 @@ const Lunch = ({modal}) => {
 
 const styles = StyleSheet.create({
     lunchContainer: {
-        backgroundColor: '#e7af77',
+        backgroundColor: pumpkin,
         flex: 1 
     },
     lunchHeader: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontFamily: 'CrimsonText-SemiBold',
         paddingHorizontal: 20,
-        color: '#2b3d28'  
+        color: forest 
     }
 })
 

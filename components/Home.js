@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
 import Lunch from './Lunch';
-import Breakfast from './Breakfast'
+import Breakfast from './Breakfast';
+import { pumpkin, forest } from '../styles/colors'
 
 const Home = () => {
 
@@ -50,23 +51,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 210/2,
     borderWidth: 3,
-    borderColor: '#e7af77',
+    borderColor: pumpkin,
     position: 'absolute',
     top: 100
   },
   logoTitle: {
-    color: '#e7af77',
+    color: pumpkin,
     fontSize: 35,
     fontFamily: 'Pacifico-Regular'
   },
   textTitle: {
-    color: '#e7af77',
+    color: pumpkin,
     fontSize: 45,
     fontFamily: 'Pacifico-Regular',
     marginTop: 150
   },
   menu: {
-    backgroundColor: '#e7af77',
+    backgroundColor: pumpkin,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
   },
@@ -78,20 +79,20 @@ const styles = StyleSheet.create({
     height:60
   },
   lunchContainer: {
-    backgroundColor: '#e7af77',
+    backgroundColor: pumpkin,
   },
   breakfastContainer: {
-    backgroundColor: '#2b3d28',
+    backgroundColor: forest,
   },
   menuText: {
     fontFamily: 'CrimsonText-SemiBold',
     fontSize: 25
   },
   lunchText: {
-    color: '#2b3d28'
+    color: forest
   },
   breakfastText: {
-    color: '#e7af77'
+    color: pumpkin
   }
 
 });

@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, Modal } from 'react-native';
 import {images} from '../datas/images';
 import { MaterialIcons } from '@expo/vector-icons';
-import AddCard from './AddCard'
+import AddCard from './AddCard';
+import { forest } from '../styles/colors'
 
 
-const MenuCard = ({ picRef, title, recipe, price }) => {
+const MenuCard = ({ picRef, title, recipe, price, mealType }) => {
 
     const [addCardVisible, setAddCardVisible] = useState(false);
 
@@ -26,6 +27,7 @@ const MenuCard = ({ picRef, title, recipe, price }) => {
                 mealTitle={title}
                 mealRecipe={recipe}
                 mealPrice={price}
+                mealType={mealType}
                /> 
             </Modal>
         </View>
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
         marginBottom: 25     
     },
     image: {
-        //change size in gimp
         width: 280,
         height: 180,
         borderWidth: 1,
@@ -51,18 +52,18 @@ const styles = StyleSheet.create({
         paddingTop: 5
     },
     title: {
-        color: '#2b3d28',
+        color: forest,
         fontSize: 20,
         fontWeight: '700',
         maxWidth: 200
     },
     price: {
-        color: '#2b3d28',
+        color: forest,
         fontSize: 15
     },
     addIcon: {
         marginRight: 70,
-        color:'#2b3d28'
+        color: forest
     }
 })
 
