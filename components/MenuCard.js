@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Image, Text, Modal } from 'react-native';
-import {images} from '../datas/images';
 import { MaterialIcons } from '@expo/vector-icons';
-import AddCard from './AddCard';
-import { forest } from '../styles/colors'
+import { images } from '../datas/images';
+import { forest } from '../styles/colors';
+import AddCard from '../screens/AddCard';
 
 
 const MenuCard = ({ picRef, title, recipe, price, mealType }) => {

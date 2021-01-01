@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as Font from 'expo-font';
-import Home from './components/Home';
 import AppLoading from 'expo-app-loading';
+import Home from './screens/Home';
 
 
 const getFonts = () => Font.loadAsync({

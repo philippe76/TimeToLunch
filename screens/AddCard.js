@@ -4,7 +4,8 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { LunchStyle } from '../styles/lunchStyle';
 import { BreakfastStyle } from '../styles/breakfastStyle';
-import Order from './Order'
+import Order from './Order';
+import AddButton from '../components/AddButton';
 
 const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType }) => {
 
@@ -57,9 +58,12 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                     </View>                    
                     <Text style={mealType === 'Lunch'? LunchStyle.price : BreakfastStyle.price}> { price.toFixed(2) } € </Text>
                 </View>
-                <TouchableOpacity style={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag} onPress={() => setOpenOrder(true)}>
-                    <Text style={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText}> ADD TO BAG </Text>
-                </TouchableOpacity>
+                <AddButton 
+                    buttonStyle={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag}
+                    textStyle={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText}
+                    text={'ADD TO BAG'}
+                    addTo={()=> setOpenOrder(true)}
+                />
             </View>
             <Modal visible={openOrder}>
                 <Order openOrder={setOpenOrder}/>
