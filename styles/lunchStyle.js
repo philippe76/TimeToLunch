@@ -58,8 +58,6 @@ export const LunchStyle = StyleSheet.create({
     addToBagText: {
         color: forest,
         textAlign: 'center',
-        fontWeight: 'bold',
-        fontFamily: 'CrimsonText-SemiBold',
-        fontSize: 18
+        fontSize: 18,
     }
 })

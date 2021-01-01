@@ -1,20 +1,24 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
+import { images } from '../datas/images';
 import { forest } from '../styles/colors';
 import { BreakfastStyle } from '../styles/breakfastStyle';
 import AddButton from '../components/AddButton';
 
-const Order = ({ openOrder }) => {
+const Order = ({ openOrder, mealPic, mealTitle, mealPrice }) => {
 
-    const [order, setOrder] = useState([
-        {
-            pic: '',
-            title: '',
-            number: 0,
-            price: 0
-        }
-    ])
+    // const [order, setOrder] = useState([
+
+    // ])
+
+    // useEffect(()=> {
+    //     setOrder(prevState => [...prevState, {
+    //         pic: mealPic,
+    //         title: mealTitle,
+    //         price: mealPrice
+    //     }])
+    // }, order)
 
     return (
         <View style={styles.container}>
@@ -24,15 +28,18 @@ const Order = ({ openOrder }) => {
                 size={33} 
                 onPress={() => openOrder(false)}
             />
+            <View style={styles.bagData}>
+                <Image source={images.picRef[mealPic]} style={styles.mealPic}/>
+            </View>
             <View style={styles.order}>
                 <View style={styles.orderDetail}>
                     <Text style={styles.total}> Total </Text>
-                    <Text style={styles.amount}> 12.90€ </Text>
+                    <Text style={styles.amount}> {mealPrice}€ </Text>
                 </View>
                 <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
-                    textStyle={{...BreakfastStyle.addToBagText, color:'#f0f0f0'}} 
-                    text={'CONFIRM ORDER'}
+                    textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
+                    text={'CONFIRM  ORDER'}
                     addTo={()=> {}}
                 />
             </View>
@@ -51,6 +58,11 @@ const styles = StyleSheet.create({
         color: forest,
         fontSize: 25,
         marginVertical: 25
+    },
+    mealPic: {
+        width: 90,
+        height: 90,
+        borderRadius: 90/2
     },
     order: {
         width: '80%',
@@ -74,10 +86,14 @@ const styles = StyleSheet.create({
         fontFamily: 'CrimsonText-SemiBold',
     },
     button: {
-        paddingHorizontal: 30,
+        paddingHorizontal: 25,
+        paddingVertical: 16,
         marginTop: 20,
         width: '100%',
-        fontFamily: 'CrimsonText-SemiBold',
+    },
+    buttonText: {
+        color:'#f0f0f0', 
+        fontSize: 17
     }
 })
 

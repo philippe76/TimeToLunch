@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, View, Text, Image, Modal } from 'react-native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { LunchStyle } from '../styles/lunchStyle';
@@ -66,7 +66,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                 />
             </View>
             <Modal visible={openOrder}>
-                <Order openOrder={setOpenOrder}/>
+                <Order openOrder={setOpenOrder} mealPic={mealPic} mealTitle={mealTitle} mealPrice={mealPrice}/>
             </Modal>
         </View>
     )

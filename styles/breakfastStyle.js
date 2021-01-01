@@ -57,8 +57,6 @@ export const BreakfastStyle = StyleSheet.create({
     addToBagText: {
         color: pumpkin,
         textAlign: 'center',
-        fontWeight: 'bold',
-        fontFamily: 'CrimsonText-SemiBold',
         fontSize: 18
     }
 })
