@@ -13,10 +13,11 @@ export const LunchStyle = StyleSheet.create({
     },
     title: {
         color: pumpkin,
-        fontSize: 37,
+        fontSize: 40,
         fontFamily: 'Pacifico-Regular',
         maxWidth: 350,
         textAlign: 'center',
+        lineHeight: 55
     },
     recipe: {
         color: pumpkin,

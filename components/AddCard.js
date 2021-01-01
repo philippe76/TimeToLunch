@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Image, TouchableOpacity, Modal } from 'react-native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { LunchStyle } from '../styles/lunchStyle';
 import { BreakfastStyle } from '../styles/breakfastStyle';
+import Order from './Order'
 
 const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType }) => {
 
     const [mealNumber, setMealNumber] = useState(1);
-    const [price, setPrice] = useState(parseFloat(mealPrice))
+    const [price, setPrice] = useState(parseFloat(mealPrice));
+    const [openOrder, setOpenOrder] = useState(false)
 
     const AddOne = () => {
         setMealNumber(mealNumber + 1);
@@ -55,10 +57,13 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                     </View>                    
                     <Text style={mealType === 'Lunch'? LunchStyle.price : BreakfastStyle.price}> { price.toFixed(2) } € </Text>
                 </View>
-                <TouchableOpacity style={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag}>
+                <TouchableOpacity style={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag} onPress={() => setOpenOrder(true)}>
                     <Text style={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText}> ADD TO BAG </Text>
                 </TouchableOpacity>
             </View>
+            <Modal visible={openOrder}>
+                <Order openOrder={setOpenOrder}/>
+            </Modal>
         </View>
     )
 }
