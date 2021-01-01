@@ -15,7 +15,6 @@ export default function App() {
 
   const [fontsLoaded, setFontsLoaded] = useState(false)
 
-
   if (fontsLoaded) {
     return (
       <Home />
@@ -31,5 +30,4 @@ export default function App() {
       />
     )
   }
-
 }

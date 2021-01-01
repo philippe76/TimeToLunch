@@ -60,7 +60,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                 </View>
                 <AddButton 
                     buttonStyle={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag}
-                    textStyle={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText}
+                    textStyle={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText} 
                     text={'ADD TO BAG'}
                     addTo={()=> setOpenOrder(true)}
                 />
