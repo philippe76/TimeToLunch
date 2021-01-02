@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AntDesign } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { forest } from '../styles/colors';
 import { BreakfastStyle } from '../styles/breakfastStyle';
@@ -11,38 +11,57 @@ import AddButton from '../components/AddButton';
 
 const Order = ({ openOrder, myBag }) => {
 
+    const [test, setTest] = useState('')
+
     const storeData = () => {
-        AsyncStorage.clear()
-        AsyncStorage.setItem('@storage_Key', JSON.stringify(myBag));        ;
+        AsyncStorage.clear();
+        setTest('')
     }
 
-    const getData = async () => {
-        let mealData = await AsyncStorage.getItem('@storage_Key');
-        let parseData = JSON.parse(mealData);
-        console.log(parseData.title);
+    const getData= async () => {
+        let mealData = '';
+        try {
+            mealData = await AsyncStorage.getItem('@storage_Key');
+            // setTest(JSON.parse(mealData))
+            setTest(mealData)
+           
+        } catch (error) {
+          console.log('PAS TROUVE');
+        }
+        return mealData;
     }
+
+    useEffect(()=> {
+        getData();
+    }, [test] )
+
 
 
     return (
         <View style={styles.container}>
+
+            <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
             <Text style={styles.title}> My Bag </Text>
 
             <View style={styles.bagData}>    
             {/* FLAT LIST */}
-                <Image source={images.picRef[myBag.pic]} style={styles.mealPic}/> 
+                {/* <Image source={images.picRef[myBag.pic]} style={styles.mealPic}/> 
                 <View style={styles.bagDetail}>
                     <Text style={styles.mealTitle}> {myBag.title} </Text>
                     <View style={styles.priceDetail}>
                         <Text style={styles.mealPrice}> {myBag.number}x </Text>
                         <Text style={styles.mealPrice}> {myBag.price}€ </Text>
                     </View>
-                </View>
+                </View> */}
+
+            {/* {test.map(item =><Text>{item.meal}</Text>)} */}
+            <Text> {test} </Text>
             </View>
 
             <View style={styles.order}>
                 <View style={styles.orderDetail}>
                     <Text style={styles.total}> Total </Text>
-                    <Text style={styles.amount}> {(myBag.price * myBag.number).toFixed(2)} € </Text>
+                    {/* <Text style={styles.amount}> {(myBag.price * myBag.number).toFixed(2)} € </Text> */}
                 </View>
                 <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
@@ -56,11 +75,7 @@ const Order = ({ openOrder, myBag }) => {
                     text={'DISPLAY ORDER'}
                     addTo={getData}
                 />
-                <AntDesign 
-                name='closecircleo' 
-                size={33} 
-                onPress={() => openOrder(false)}
-                />
+
             </View>
 
         </View>
@@ -74,9 +89,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between'
     },
+    getBack: {
+        position: 'absolute',
+        left: 20,
+        top: 20
+    },
     title: {
         color: forest,
-        fontSize: 25,
+        fontSize: 35,
         // borderWidth: 1,
         // borderColor: forest,
         marginTop: 50
@@ -95,10 +115,13 @@ const styles = StyleSheet.create({
         color: forest,
         fontFamily: 'Pacifico-Regular',
         fontSize: 25,
+        lineHeight: 39,
+        maxWidth: 200
     },
     priceDetail: {
         flexDirection: 'row',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        marginTop: 10
     },
     mealPrice: {
         fontSize: 16

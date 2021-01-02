@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image, Modal } from 'react-native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { images } from '../datas/images';
 import { LunchStyle } from '../styles/lunchStyle';
 import { BreakfastStyle } from '../styles/breakfastStyle';
@@ -28,6 +29,17 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
             setMealNumber(mealNumber - 1);
             setPrice((mealNumber-1) * mealPrice);
         }    
+    }
+
+    const storeData = () => {
+       
+        // let test = {'meal': 'chicken'};
+        let datatest = [{'meal': 'chicken', 'number': 1}, {'meal': 'beef', 'number': 3}];
+        AsyncStorage.setItem('@storage_Key', JSON.stringify(datatest));   
+        
+        
+        // AsyncStorage.setItem('@storage_Key', 'BLABLABLA'); 
+
     }
 
     return (
@@ -66,12 +78,13 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                     text={'ADD TO BAG'}
                     addTo={()=> {
                         setOpenOrder(true)
-                        setOrder({ 
+                        {/* setOrder({ 
                             pic: mealPic, 
                             title: mealTitle, 
                             number: mealNumber, 
                             price: mealPrice
-                        })                        
+                        })   */}
+                        storeData()                          
                     }}
                 />
             </View>
