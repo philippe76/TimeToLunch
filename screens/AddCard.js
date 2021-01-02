@@ -76,7 +76,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                 />
             </View>
             <Modal visible={openOrder}>
-                <Order openOrder={setOpenOrder} mealPic={mealPic} mealTitle={mealTitle} mealPrice={mealPrice} myBag={order}/>
+                <Order openOrder={setOpenOrder} myBag={order}/>
             </Modal>
         </View>
     )

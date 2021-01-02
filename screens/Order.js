@@ -9,7 +9,7 @@ import AddButton from '../components/AddButton';
 
 
 
-const Order = ({ openOrder, mealPic, mealTitle, mealPrice, myBag }) => {
+const Order = ({ openOrder, myBag }) => {
 
     const storeData = () => {
         AsyncStorage.clear()
@@ -26,18 +26,23 @@ const Order = ({ openOrder, mealPic, mealTitle, mealPrice, myBag }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}> My Bag </Text>
-            <AntDesign 
-                name='closecircleo' 
-                size={33} 
-                onPress={() => openOrder(false)}
-            />
-            <View style={styles.bagData}>
-                <Image source={images.picRef[mealPic]} style={styles.mealPic}/>
+
+            <View style={styles.bagData}>    
+            {/* FLAT LIST */}
+                <Image source={images.picRef[myBag.pic]} style={styles.mealPic}/> 
+                <View style={styles.bagDetail}>
+                    <Text style={styles.mealTitle}> {myBag.title} </Text>
+                    <View style={styles.priceDetail}>
+                        <Text style={styles.mealPrice}> {myBag.number}x </Text>
+                        <Text style={styles.mealPrice}> {myBag.price}€ </Text>
+                    </View>
+                </View>
             </View>
+
             <View style={styles.order}>
                 <View style={styles.orderDetail}>
                     <Text style={styles.total}> Total </Text>
-                    <Text style={styles.amount}> {mealPrice}€ </Text>
+                    <Text style={styles.amount}> {(myBag.price * myBag.number).toFixed(2)} € </Text>
                 </View>
                 <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
@@ -51,7 +56,13 @@ const Order = ({ openOrder, mealPic, mealTitle, mealPrice, myBag }) => {
                     text={'DISPLAY ORDER'}
                     addTo={getData}
                 />
+                <AntDesign 
+                name='closecircleo' 
+                size={33} 
+                onPress={() => openOrder(false)}
+                />
             </View>
+
         </View>
     )
 }
@@ -61,12 +72,36 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#f0f0f0',
         alignItems: 'center',
-        justifyContent: 'space-around'
+        justifyContent: 'space-between'
     },
     title: {
         color: forest,
         fontSize: 25,
-        marginVertical: 25
+        // borderWidth: 1,
+        // borderColor: forest,
+        marginTop: 50
+    },
+    bagData: {
+        flexDirection: 'row',
+        // borderWidth: 1,
+        // borderColor: forest,
+        width: '80%'
+    },
+    bagDetail: {
+        marginLeft: 20,
+        justifyContent: 'center'
+    },
+    mealTitle: {
+        color: forest,
+        fontFamily: 'Pacifico-Regular',
+        fontSize: 25,
+    },
+    priceDetail: {
+        flexDirection: 'row',
+        justifyContent: 'space-between'
+    },
+    mealPrice: {
+        fontSize: 16
     },
     mealPic: {
         width: 90,
