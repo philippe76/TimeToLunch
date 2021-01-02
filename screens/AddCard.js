@@ -11,7 +11,9 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
 
     const [mealNumber, setMealNumber] = useState(1);
     const [price, setPrice] = useState(parseFloat(mealPrice));
-    const [openOrder, setOpenOrder] = useState(false)
+    const [openOrder, setOpenOrder] = useState(false);
+    const [order, setOrder] = useState()
+
 
     const AddOne = () => {
         setMealNumber(mealNumber + 1);
@@ -62,11 +64,19 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                     buttonStyle={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag}
                     textStyle={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText} 
                     text={'ADD TO BAG'}
-                    addTo={()=> setOpenOrder(true)}
+                    addTo={()=> {
+                        setOpenOrder(true)
+                        setOrder({ 
+                            pic: mealPic, 
+                            title: mealTitle, 
+                            number: mealNumber, 
+                            price: mealPrice
+                        })                        
+                    }}
                 />
             </View>
             <Modal visible={openOrder}>
-                <Order openOrder={setOpenOrder} mealPic={mealPic} mealTitle={mealTitle} mealPrice={mealPrice}/>
+                <Order openOrder={setOpenOrder} mealPic={mealPic} mealTitle={mealTitle} mealPrice={mealPrice} myBag={order}/>
             </Modal>
         </View>
     )

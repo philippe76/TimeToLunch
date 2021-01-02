@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AntDesign } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { forest } from '../styles/colors';
 import { BreakfastStyle } from '../styles/breakfastStyle';
 import AddButton from '../components/AddButton';
 
-const Order = ({ openOrder, mealPic, mealTitle, mealPrice }) => {
 
-    // const [order, setOrder] = useState([
 
-    // ])
+const Order = ({ openOrder, mealPic, mealTitle, mealPrice, myBag }) => {
 
-    // useEffect(()=> {
-    //     setOrder(prevState => [...prevState, {
-    //         pic: mealPic,
-    //         title: mealTitle,
-    //         price: mealPrice
-    //     }])
-    // }, order)
+    const storeData = () => {
+        AsyncStorage.clear()
+        AsyncStorage.setItem('@storage_Key', JSON.stringify(myBag));        ;
+    }
+
+    const getData = async () => {
+        let mealData = await AsyncStorage.getItem('@storage_Key');
+        let parseData = JSON.parse(mealData);
+        console.log(parseData.title);
+    }
+
 
     return (
         <View style={styles.container}>
@@ -40,7 +43,13 @@ const Order = ({ openOrder, mealPic, mealTitle, mealPrice }) => {
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
                     textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
                     text={'CONFIRM  ORDER'}
-                    addTo={()=> {}}
+                    addTo={storeData}
+                />
+                <AddButton 
+                    buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
+                    textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
+                    text={'DISPLAY ORDER'}
+                    addTo={getData}
                 />
             </View>
         </View>
