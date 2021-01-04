@@ -11,62 +11,65 @@ import AddButton from '../components/AddButton';
 
 const Order = ({ openOrder }) => {
 
-    const [myBag, setMyBag] = useState([])
+    const [myBag, setMyBag] = useState([]);
+    // const [totalPrice, setTotalPrice] = useState(0)
 
-    const storeData = () => {
+    const deleteData = () => {
         AsyncStorage.clear();
         setMyBag([])
     }
 
     const getData = async () => {
-
-        AsyncStorage.getItem('@storage_Key')
-        .then((value) => {
-          const parseValue = JSON.parse(value);
-          setMyBag(parseValue);
+        AsyncStorage.getItem('@meal_Key')
+            .then((value) => {
+            const parseValue = JSON.parse(value);
+            setMyBag(parseValue);
+            return parseValue
         });
-
     }     
 
     useEffect(()=> {
-        getData();
-    } )
+        getData();     
+    },[myBag])
 
     return (
         <View style={styles.container}>
+            <View style={styles.bagHeader}>
+                <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
+                <Text style={styles.title}> My Bag </Text>
+            </View>
 
-            <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
-            <Text style={styles.title}> My Bag </Text>
-
-            <View style={styles.bagData}>    
-                <FlatList 
-                    data={myBag}
-                    renderItem={ itemData => 
-                    <>
+            <FlatList 
+                data={myBag}
+                renderItem={ itemData => 
+                    <View style={styles.bagData}>    
                         <Image source={images.picRef[itemData.item.pic]} style={styles.mealPic}/>
                         <View style={styles.bagDetail}>
-                            <Text style={styles.mealTitle}> {itemData.item.title} </Text>
+                            <Text style={styles.mealName}> {itemData.item.title} </Text>
                             <View style={styles.priceDetail}>
                                 <Text style={styles.mealPrice}> {itemData.item.number}x </Text>
                                 <Text style={styles.mealPrice}> {itemData.item.price}€ </Text>
                             </View>
                         </View> 
-                    </>
-                    }
-                    keyExtractor={item => item.id}
-                />
-            </View>
-
+                    </View>
+                }
+                keyExtractor={item => item.id}
+            />
+        
             <View style={styles.order}>
                 <View style={styles.orderDetail}>
                     <Text style={styles.total}> Total </Text>
-                    {/* <Text style={styles.amount}> {(myBag.price * myBag.number).toFixed(2)} € </Text> */}
+                    {/* <Text style={styles.amount}> {totalPrice.toFixed(2)} € </Text> */}
+                    {/* {myBag !== null && myBag.map(item => <Text>{item.totalPrice}</Text>)} */}
+                   {/* {myBag !== null && <Text>{myBag.filter(item => item.totalPrice != null).reduce( (acc, current) =>acc+current)}</Text>} */}
+                   {myBag !== null &&<Text style={styles.amount}>{(myBag.map(item => item.totalPrice).reduce((acc, curr)=> acc + curr)).toFixed(2)}€ </Text>}
+                  
                 </View>
                 <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
                     textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
                     text={'DELETE ORDER'}
-                    addTo={storeData}
+                    addTo={deleteData}
                 />
                 {/* <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
@@ -88,39 +91,40 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between'
     },
+    bagHeader: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        width: '80%',
+        marginVertical: 40
+    },
     getBack: {
-        position: 'absolute',
-        left: 20,
-        top: 20
+        marginLeft: -65
     },
     title: {
         color: forest,
-        fontSize: 35,
-        // borderWidth: 1,
-        // borderColor: forest,
-        marginTop: 50
+        fontSize: 35
     },
     bagData: {
         flexDirection: 'row',
-        // borderWidth: 1,
-        // borderColor: forest,
-        width: '80%'
+        minWidth: '80%',
+        marginVertical: 10
     },
     bagDetail: {
         marginLeft: 20,
-        justifyContent: 'center'
+        justifyContent: 'center',
+        width: '58%'
     },
-    mealTitle: {
+    mealName: {
         color: forest,
         fontFamily: 'Pacifico-Regular',
-        fontSize: 25,
-        lineHeight: 39,
+        fontSize: 23,
+        lineHeight: 32,
         maxWidth: 200
     },
     priceDetail: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 10
+        justifyContent: 'space-between'
     },
     mealPrice: {
         fontSize: 16
@@ -149,13 +153,13 @@ const styles = StyleSheet.create({
         color: forest,
         fontWeight: '700',
         fontSize: 25,
-        fontFamily: 'CrimsonText-SemiBold',
+        fontFamily: 'CrimsonText-SemiBold'
     },
     button: {
         paddingHorizontal: 25,
         paddingVertical: 16,
         marginTop: 20,
-        width: '100%',
+        width: '100%'
     },
     buttonText: {
         color:'#f0f0f0', 

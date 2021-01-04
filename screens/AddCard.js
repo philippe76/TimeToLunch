@@ -34,11 +34,11 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
     const addItemToBag = async (item) => {
         let bagItems = await getBagItems();
         bagItems.push(item);
-        AsyncStorage.setItem('@storage_Key', JSON.stringify(bagItems));
+        AsyncStorage.setItem('@meal_Key', JSON.stringify(bagItems));
     }
         
     const getBagItems = async () => {
-        let currentBag = await AsyncStorage.getItem('@storage_Key');
+        let currentBag = await AsyncStorage.getItem('@meal_Key');
         return currentBag ? JSON.parse(currentBag) : [];
     }
 
@@ -47,11 +47,14 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
             title: mealTitle, 
             price: mealPrice,
             pic: mealPic,
+            totalPrice: price,
             number: mealNumber,
             id: (Math.random()*10).toFixed(2).toString()
         }
 
-        addItemToBag(myData)
+        addItemToBag(myData);
+        // addItemToBag(mealNumber);
+
 
     }
 
@@ -100,7 +103,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                 />
             </View>
             <Modal visible={openOrder}>
-                <Order openOrder={setOpenOrder} />
+                <Order openOrder={setOpenOrder} totalPrice={price} />
             </Modal>
         </View>
     )
