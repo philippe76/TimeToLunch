@@ -53,8 +53,6 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
         }
 
         addItemToBag(myData);
-        // addItemToBag(mealNumber);
-
 
     }
 
@@ -103,7 +101,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                 />
             </View>
             <Modal visible={openOrder}>
-                <Order openOrder={setOpenOrder} totalPrice={price} />
+                <Order openOrder={setOpenOrder} />
             </Modal>
         </View>
     )

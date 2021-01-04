@@ -12,7 +12,6 @@ import AddButton from '../components/AddButton';
 const Order = ({ openOrder }) => {
 
     const [myBag, setMyBag] = useState([]);
-    // const [totalPrice, setTotalPrice] = useState(0)
 
     const deleteData = () => {
         AsyncStorage.clear();
@@ -21,10 +20,10 @@ const Order = ({ openOrder }) => {
 
     const getData = async () => {
         AsyncStorage.getItem('@meal_Key')
-            .then((value) => {
-            const parseValue = JSON.parse(value);
-            setMyBag(parseValue);
-            return parseValue
+            .then((data) => {
+            const parsedData = JSON.parse(data);
+            setMyBag(parsedData);
+            return parsedData
         });
     }     
 
@@ -59,11 +58,7 @@ const Order = ({ openOrder }) => {
             <View style={styles.order}>
                 <View style={styles.orderDetail}>
                     <Text style={styles.total}> Total </Text>
-                    {/* <Text style={styles.amount}> {totalPrice.toFixed(2)} € </Text> */}
-                    {/* {myBag !== null && myBag.map(item => <Text>{item.totalPrice}</Text>)} */}
-                   {/* {myBag !== null && <Text>{myBag.filter(item => item.totalPrice != null).reduce( (acc, current) =>acc+current)}</Text>} */}
-                   {myBag !== null &&<Text style={styles.amount}>{(myBag.map(item => item.totalPrice).reduce((acc, curr)=> acc + curr)).toFixed(2)}€ </Text>}
-                  
+                    {myBag !== null && <Text style={styles.amount}>{(myBag.map(item => item.totalPrice).reduce((acc, curr)=> acc + curr, 0)).toFixed(2)}€ </Text>}                 
                 </View>
                 <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
@@ -71,13 +66,6 @@ const Order = ({ openOrder }) => {
                     text={'DELETE ORDER'}
                     addTo={deleteData}
                 />
-                {/* <AddButton 
-                    buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
-                    textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
-                    text={'DISPLAY ORDER'}
-                    addTo={getData}
-                /> */}
-
             </View>
 
         </View>
