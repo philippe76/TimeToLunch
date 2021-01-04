@@ -11,9 +11,7 @@ import AddButton from '../components/AddButton';
 
 const Order = ({ openOrder }) => {
 
-    const [myBag, setMyBag] = useState([
-
-    ])
+    const [myBag, setMyBag] = useState([])
 
     const storeData = () => {
         AsyncStorage.clear();
@@ -26,15 +24,13 @@ const Order = ({ openOrder }) => {
         .then((value) => {
           const parseValue = JSON.parse(value);
           setMyBag(parseValue);
-
         });
 
     }     
 
-
     useEffect(()=> {
         getData();
-    }, [] )
+    } )
 
     return (
         <View style={styles.container}>
@@ -69,15 +65,15 @@ const Order = ({ openOrder }) => {
                 <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
                     textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
-                    text={'CONFIRM  ORDER'}
+                    text={'DELETE ORDER'}
                     addTo={storeData}
                 />
-                <AddButton 
+                {/* <AddButton 
                     buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
                     textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
                     text={'DISPLAY ORDER'}
                     addTo={getData}
-                />
+                /> */}
 
             </View>
 

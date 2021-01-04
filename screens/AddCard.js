@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, Modal } from 'react-native';
 import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,16 +30,34 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
         }    
     }
 
+    
+    const addItemToBag = async (item) => {
+        let bagItems = await getBagItems();
+        bagItems.push(item);
+        AsyncStorage.setItem('@storage_Key', JSON.stringify(bagItems));
+    }
+        
+    const getBagItems = async () => {
+        let currentBag = await AsyncStorage.getItem('@storage_Key');
+        return currentBag ? JSON.parse(currentBag) : [];
+    }
+
     const storeData = () => {
-        let myData = [{
+        let myData = {
             title: mealTitle, 
             price: mealPrice,
             pic: mealPic,
             number: mealNumber,
-            id: '1'
-        }]
-        AsyncStorage.setItem('@storage_Key', JSON.stringify(myData));   
+            id: (Math.random()*10).toFixed(2).toString()
+        }
+
+        addItemToBag(myData)
+
     }
+
+    useEffect(()=>{ 
+        getBagItems()
+    }, [])
 
     return (
         <View style={mealType === 'Lunch'? LunchStyle.container : BreakfastStyle.container}>
@@ -77,13 +95,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
                     text={'ADD TO BAG'}
                     addTo={()=> {
                         setOpenOrder(true)
-                        {/* setOrder({ 
-                            pic: mealPic, 
-                            title: mealTitle, 
-                            number: mealNumber, 
-                            price: mealPrice
-                        })   */}
-                        storeData()                          
+                        storeData()                        
                     }}
                 />
             </View>
