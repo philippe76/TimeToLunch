@@ -1,5 +1,5 @@
-import React, { useState, useEffect }from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialIcons } from '@expo/vector-icons';
 import { images } from '../datas/images';
@@ -9,33 +9,32 @@ import AddButton from '../components/AddButton';
 
 
 
-const Order = ({ openOrder, myBag }) => {
+const Order = ({ openOrder }) => {
 
-    const [test, setTest] = useState('')
+    const [myBag, setMyBag] = useState([
+
+    ])
 
     const storeData = () => {
         AsyncStorage.clear();
-        setTest('')
+        setMyBag([])
     }
 
-    const getData= async () => {
-        let mealData = '';
-        try {
-            mealData = await AsyncStorage.getItem('@storage_Key');
-            // setTest(JSON.parse(mealData))
-            setTest(mealData)
-           
-        } catch (error) {
-          console.log('PAS TROUVE');
-        }
-        return mealData;
-    }
+    const getData = async () => {
+
+        AsyncStorage.getItem('@storage_Key')
+        .then((value) => {
+          const parseValue = JSON.parse(value);
+          setMyBag(parseValue);
+
+        });
+
+    }     
+
 
     useEffect(()=> {
         getData();
-    }, [test] )
-
-
+    }, [] )
 
     return (
         <View style={styles.container}>
@@ -44,18 +43,22 @@ const Order = ({ openOrder, myBag }) => {
             <Text style={styles.title}> My Bag </Text>
 
             <View style={styles.bagData}>    
-            {/* FLAT LIST */}
-                {/* <Image source={images.picRef[myBag.pic]} style={styles.mealPic}/> 
-                <View style={styles.bagDetail}>
-                    <Text style={styles.mealTitle}> {myBag.title} </Text>
-                    <View style={styles.priceDetail}>
-                        <Text style={styles.mealPrice}> {myBag.number}x </Text>
-                        <Text style={styles.mealPrice}> {myBag.price}€ </Text>
-                    </View>
-                </View> */}
-
-            {/* {test.map(item =><Text>{item.meal}</Text>)} */}
-            <Text> {test} </Text>
+                <FlatList 
+                    data={myBag}
+                    renderItem={ itemData => 
+                    <>
+                        <Image source={images.picRef[itemData.item.pic]} style={styles.mealPic}/>
+                        <View style={styles.bagDetail}>
+                            <Text style={styles.mealTitle}> {itemData.item.title} </Text>
+                            <View style={styles.priceDetail}>
+                                <Text style={styles.mealPrice}> {itemData.item.number}x </Text>
+                                <Text style={styles.mealPrice}> {itemData.item.price}€ </Text>
+                            </View>
+                        </View> 
+                    </>
+                    }
+                    keyExtractor={item => item.id}
+                />
             </View>
 
             <View style={styles.order}>
