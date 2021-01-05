@@ -9,9 +9,11 @@ import AddButton from '../components/AddButton';
 
 
 
-const Order = ({ openOrder }) => {
+const Order = ({ openOrder, mealType }) => {
 
     const [myBag, setMyBag] = useState([]);
+
+    const keyStore = mealType === 'Lunch' ? '@lunch_Key' : '@dessert_key'
 
     const deleteData = () => {
         AsyncStorage.clear();
@@ -19,7 +21,7 @@ const Order = ({ openOrder }) => {
     }
 
     const getData = async () => {
-        AsyncStorage.getItem('@meal_Key')
+        AsyncStorage.getItem(keyStore)
             .then((data) => {
             const parsedData = JSON.parse(data);
             setMyBag(parsedData);
@@ -28,11 +30,11 @@ const Order = ({ openOrder }) => {
     }  
     
     const removeData = (id) => {
-        AsyncStorage.getItem('@meal_Key')
+        AsyncStorage.getItem(keyStore)
             .then((data => {
                 const parsedData = JSON.parse(data);
                 const newData = parsedData.filter(item => item.id !== id);
-                AsyncStorage.setItem('@meal_Key', JSON.stringify(newData));
+                AsyncStorage.setItem(keyStore, JSON.stringify(newData));
                 setMyBag(newData);
             }))
     }

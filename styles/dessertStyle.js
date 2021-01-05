@@ -19,14 +19,15 @@ export const DessertStyle = StyleSheet.create({
         fontFamily: 'Pacifico-Regular',
         maxWidth: 350,
         textAlign: 'center',
+        lineHeight: 50
     },
     recipe: {
         color: forest,
         fontFamily: 'CrimsonText-SemiBold',
-        fontSize: 19,
+        fontSize: 20,
         width: '75%',
         textAlign: 'center',
-        lineHeight: 20,
+        lineHeight: 23,
         marginVertical: 25
     },
     number: {

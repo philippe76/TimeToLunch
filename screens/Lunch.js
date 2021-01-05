@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
         marginBottom: 30
     },
     lunchTitle: {
-        fontSize: 30,
+        fontSize: 35,
         fontFamily: 'CrimsonText-SemiBold',
         paddingHorizontal: 20,
         color: forest 
