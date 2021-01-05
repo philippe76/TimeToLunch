@@ -1,6 +1,7 @@
 
 export const lunchDatas = [
-    {   picRef: 'hummus',
+    {   
+        picRef: 'hummus',
         title: 'Hummus',
         recipe: 'chickpeas, extra-virgin olive oil, tahini, toasted cumin seed, garlic, freshly cracked peppercorns',
         price: '6.90',
@@ -26,6 +27,5 @@ export const lunchDatas = [
         recipe: 'tomatoes, red onions, green chillies, toasted cumin seed, coriander leaves, whole-wheat tortillas, shredded cheese',
         price: '10.90',
         id: '4'
-    },
-
+    }
 ]

@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { forest } from '../styles/colors';
-import { BreakfastStyle } from '../styles/breakfastStyle';
+import { DessertStyle } from '../styles/dessertStyle';
 import AddButton from '../components/AddButton';
 
 
@@ -72,8 +72,8 @@ const Order = ({ openOrder }) => {
                     {myBag !== null && <Text style={styles.amount}>{(myBag.map(item => item.totalPrice).reduce((acc, curr)=> acc + curr, 0)).toFixed(2)}€ </Text>}                 
                 </View>
                 <AddButton 
-                    buttonStyle={{...BreakfastStyle.addToBag, ...styles.button}}
-                    textStyle={{...BreakfastStyle.addToBagText, ...styles.buttonText}} 
+                    buttonStyle={{...DessertStyle.addToBag, ...styles.button}}
+                    textStyle={{...DessertStyle.addToBagText, ...styles.buttonText}} 
                     text={'DELETE ORDER'}
                     addTo={deleteData}
                 />

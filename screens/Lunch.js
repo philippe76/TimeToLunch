@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from '../components/MenuCard';
 import { lunchDatas } from '../datas/lunchData';
-import { pumpkin, forest } from '../styles/colors'
+import { pumpkin, forest } from '../styles/colors';
 
 
 const Lunch = ({modal}) => {

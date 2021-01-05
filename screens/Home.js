@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
 import Lunch from './Lunch';
-import Breakfast from './Breakfast';
+import Dessert from './Dessert';
 import { pumpkin, forest } from '../styles/colors'
 
 const Home = () => {
 
     const [lunchVisible, setLunchVisible] = useState(false);
-    const [breakfastVisible, setBreakfastVisible] = useState(false);
+    const [dessertVisible, setDessertVisible] = useState(false);
 
     return (
         <>
@@ -26,11 +26,11 @@ const Home = () => {
             <Text style={{...styles.menuText, ...styles.lunchText}}>Lunch</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{...styles.menuContainer, ...styles.breakfastContainer}} onPress={()=> setBreakfastVisible(true)}>
-            <Modal visible={breakfastVisible} animationType='slide'>
-                <Breakfast modal={setBreakfastVisible} />
+        <TouchableOpacity style={{...styles.menuContainer, ...styles.dessertContainer}} onPress={()=> setDessertVisible(true)}>
+            <Modal visible={dessertVisible} animationType='slide'>
+                <Dessert modal={setDessertVisible} />
             </Modal>
-            <Text style={{...styles.menuText, ...styles.breakfastText}}>Breakfast</Text>
+            <Text style={{...styles.menuText, ...styles.dessertText}}>Dessert</Text>
         </TouchableOpacity>
       </View>
       </>
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
   lunchContainer: {
     backgroundColor: pumpkin,
   },
-  breakfastContainer: {
+  dessertContainer: {
     backgroundColor: forest,
   },
   menuText: {
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
   lunchText: {
     color: forest
   },
-  breakfastText: {
+  dessertText: {
     color: pumpkin
   }
 

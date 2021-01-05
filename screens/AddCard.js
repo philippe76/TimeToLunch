@@ -4,7 +4,7 @@ import { AntDesign, MaterialIcons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { images } from '../datas/images';
 import { LunchStyle } from '../styles/lunchStyle';
-import { BreakfastStyle } from '../styles/breakfastStyle';
+import { DessertStyle } from '../styles/dessertStyle';
 import Order from './Order';
 import AddButton from '../components/AddButton';
 
@@ -51,9 +51,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
             number: mealNumber,
             id: (Math.random()*10).toFixed(2).toString()
         }
-
         addItemToBag(myData);
-
     }
 
     useEffect(()=>{ 
@@ -61,38 +59,38 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
     }, [])
 
     return (
-        <View style={mealType === 'Lunch'? LunchStyle.container : BreakfastStyle.container}>
+        <View style={mealType === 'Lunch'? LunchStyle.container : DessertStyle.container}>
             <Image source={images.picRef[mealPic]} style={styles.image}/>
             <View style={styles.mealData}>
                 <AntDesign 
                     name='closecircleo' 
-                    style={mealType === 'Lunch'? LunchStyle.close : BreakfastStyle.close} 
+                    style={mealType === 'Lunch'? LunchStyle.close : DessertStyle.close} 
                     size={33} 
                     onPress={() => addMeal(false)}
                 />
-                <Text style={mealType === 'Lunch'? LunchStyle.title : BreakfastStyle.title}> { mealTitle } </Text>
-                <Text style={mealType === 'Lunch'? LunchStyle.recipe : BreakfastStyle.recipe}> { mealRecipe } </Text>
+                <Text style={mealType === 'Lunch'? LunchStyle.title : DessertStyle.title}> { mealTitle } </Text>
+                <Text style={mealType === 'Lunch'? LunchStyle.recipe : DessertStyle.recipe}> { mealRecipe } </Text>
                 <View style={styles.command}>
                     <View style={styles.numberContainer}>
                         <MaterialIcons 
                             size={28} 
-                            style={mealType === 'Lunch'? LunchStyle.iconeNumber : BreakfastStyle.iconeNumber} 
+                            style={mealType === 'Lunch'? LunchStyle.iconeNumber : DessertStyle.iconeNumber} 
                             name='remove' 
                             onPress={RemoveOne}
                         />
-                        <Text style={mealType === 'Lunch'? LunchStyle.number : BreakfastStyle.number}> { mealNumber } </Text>
+                        <Text style={mealType === 'Lunch'? LunchStyle.number : DessertStyle.number}> { mealNumber } </Text>
                         <MaterialIcons
                             size={28}
-                            style={mealType === 'Lunch'? LunchStyle.iconeNumber : BreakfastStyle.iconeNumber} 
+                            style={mealType === 'Lunch'? LunchStyle.iconeNumber : DessertStyle.iconeNumber} 
                             name='add' 
                             onPress={AddOne}
                         />
                     </View>                    
-                    <Text style={mealType === 'Lunch'? LunchStyle.price : BreakfastStyle.price}> { price.toFixed(2) } € </Text>
+                    <Text style={mealType === 'Lunch'? LunchStyle.price : DessertStyle.price}> { price.toFixed(2) } € </Text>
                 </View>
                 <AddButton 
-                    buttonStyle={mealType === 'Lunch'? LunchStyle.addToBag : BreakfastStyle.addToBag}
-                    textStyle={mealType === 'Lunch'? LunchStyle.addToBagText : BreakfastStyle.addToBagText} 
+                    buttonStyle={mealType === 'Lunch'? LunchStyle.addToBag : DessertStyle.addToBag}
+                    textStyle={mealType === 'Lunch'? LunchStyle.addToBagText : DessertStyle.addToBagText} 
                     text={'ADD TO BAG'}
                     addTo={()=> {
                         setOpenOrder(true)

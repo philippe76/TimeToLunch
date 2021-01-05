@@ -2,7 +2,9 @@ import { StyleSheet } from 'react-native';
 import { pumpkin, forest } from './colors'
 
 
-export const BreakfastStyle = StyleSheet.create({
+export const DessertStyle = StyleSheet.create({
+
+// -------- AddCard Component ------- //    
     container: {
         flex: 1,
         backgroundColor: pumpkin
@@ -48,6 +50,9 @@ export const BreakfastStyle = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold'
     },
+
+
+// -------- AddButton Component ------- //    
     addToBag: {
         backgroundColor: forest,
         width: '65%',
@@ -58,7 +63,25 @@ export const BreakfastStyle = StyleSheet.create({
         color: pumpkin,
         textAlign: 'center',
         fontSize: 18
+    },
+
+
+// -------- MenuCard Component ------- //    
+    menuCardTitle: {
+        color: pumpkin,
+        fontSize: 20,
+        fontWeight: '700',
+        maxWidth: 200
+    },
+    menuCardPrice: {
+        color: pumpkin,
+        fontSize: 15
+    },
+    addIcon: {
+        marginRight: 70,
+        color: pumpkin
     }
+
 })
 
 

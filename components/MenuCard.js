@@ -3,6 +3,8 @@ import { StyleSheet, View, Image, Text, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { forest } from '../styles/colors';
+import { LunchStyle } from '../styles/lunchStyle';
+import { DessertStyle } from '../styles/dessertStyle';
 import AddCard from '../screens/AddCard';
 
 
@@ -15,13 +17,13 @@ const MenuCard = ({ picRef, title, recipe, price, mealType }) => {
             <Image source={images.picRef[picRef]} style={styles.image}/>
             <View style={styles.cardInfos}>
                 <View>
-                    <Text style={styles.title}>{title}</Text>
-                    <Text style={styles.price}>{price}€</Text>
+                    <Text style={mealType === 'Lunch'? LunchStyle.menuCardTitle : DessertStyle.menuCardTitle}>{title}</Text>
+                    <Text style={mealType === 'Lunch'? LunchStyle.menuCardPrice : DessertStyle.menuCardPrice}>{price}€</Text>
                 </View>
                 <MaterialIcons 
                     name='add-circle-outline' 
                     size={33} 
-                    style={styles.addIcon} 
+                    style={mealType === 'Lunch'? LunchStyle.addIcon : DessertStyle.addIcon} 
                     onPress={() => setAddCardVisible(true)}
                 />
             </View>

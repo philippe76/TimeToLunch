@@ -3,6 +3,8 @@ import { pumpkin, forest } from './colors'
 
 
 export const LunchStyle = StyleSheet.create({
+
+// -------- AddCard Component ------- //  
     container: {
         flex: 1,
         backgroundColor: forest
@@ -49,6 +51,9 @@ export const LunchStyle = StyleSheet.create({
         fontSize: 28,
         fontWeight: 'bold'
     },
+
+
+// -------- AddButton Component ------- //  
     addToBag: {
         backgroundColor: pumpkin,
         width: '65%',
@@ -59,5 +64,23 @@ export const LunchStyle = StyleSheet.create({
         color: forest,
         textAlign: 'center',
         fontSize: 18,
+    },
+
+
+// -------- MenuCard Component ------- //    
+    menuCardTitle: {
+        color: forest,
+        fontSize: 20,
+        fontWeight: '700',
+        maxWidth: 200
+    },
+    menuCardPrice: {
+        color: forest,
+        fontSize: 15
+    },
+    addIcon: {
+        marginRight: 70,
+        color: forest
     }
+
 })
