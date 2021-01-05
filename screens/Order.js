@@ -11,36 +11,40 @@ import AddButton from '../components/AddButton';
 
 const Order = ({ openOrder, mealType }) => {
 
-    const [myBag, setMyBag] = useState([]);
+    // const [myLunchBag, setMyLunchBag] = useState([]);
+    // const [myDessertBag, setMyDessertBag] = useState([]);
+    const [myBag, setMyBag] = useState();
 
-    const keyStore = mealType === 'Lunch' ? '@lunch_Key' : '@dessert_key'
+    // const keyStore = mealType === 'Lunch' ? '@lunch_Key' : '@dessert_key';
 
     const deleteData = () => {
         AsyncStorage.clear();
-        setMyBag([])
+        setMyBag([]);
     }
 
     const getData = async () => {
-        AsyncStorage.getItem(keyStore)
+        AsyncStorage.getItem('@meal_key')
             .then((data) => {
             const parsedData = JSON.parse(data);
             setMyBag(parsedData);
-            return parsedData
+            // mealType === 'Lunch' ? setMyLunchBag(parsedData) : setMyDessertBag(parsedData);
+            return parsedData;
         });
     }  
     
     const removeData = (id) => {
-        AsyncStorage.getItem(keyStore)
+        AsyncStorage.getItem('@meal_key')
             .then((data => {
                 const parsedData = JSON.parse(data);
                 const newData = parsedData.filter(item => item.id !== id);
-                AsyncStorage.setItem(keyStore, JSON.stringify(newData));
+                AsyncStorage.setItem('@meal_key', JSON.stringify(newData));
                 setMyBag(newData);
+                // mealType === 'Lunch' ? setMyLunchBag(newData) : setMyDessertBag(newData);
             }))
     }
 
     useEffect(()=> {
-        getData();     
+        getData();   
     },[myBag])
 
     return (
@@ -49,7 +53,7 @@ const Order = ({ openOrder, mealType }) => {
                 <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
                 <Text style={styles.title}> My Bag </Text>
             </View>
-
+            
             <FlatList 
                 data={myBag}
                 renderItem={ itemData => 
@@ -71,7 +75,7 @@ const Order = ({ openOrder, mealType }) => {
             <View style={styles.order}>
                 <View style={styles.orderDetail}>
                     <Text style={styles.total}> Total </Text>
-                    {myBag !== null && <Text style={styles.amount}>{(myBag.map(item => item.totalPrice).reduce((acc, curr)=> acc + curr, 0)).toFixed(2)}€ </Text>}                 
+                    {(myBag !== undefined && myBag !== null) && <Text style={styles.amount}>{(myBag.map(item => item.totalPrice).reduce((acc, curr)=> acc + curr, 0)).toFixed(2)}€ </Text>}                 
                 </View>
                 <AddButton 
                     buttonStyle={{...DessertStyle.addToBag, ...styles.button}}

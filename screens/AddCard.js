@@ -14,7 +14,7 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
     const [price, setPrice] = useState(parseFloat(mealPrice));
     const [openOrder, setOpenOrder] = useState(false);
     
-    const keyStore = mealType === 'Lunch' ? '@lunch_Key' : '@dessert_key'
+    // const keyStore = mealType === 'Lunch' ? '@lunch_Key' : '@dessert_key'
 
     const AddOne = () => {
         setMealNumber(mealNumber + 1);
@@ -35,11 +35,11 @@ const AddCard = ({ addMeal, mealPic, mealTitle, mealRecipe, mealPrice, mealType 
     const addItemToBag = async (item) => {
         let bagItems = await getBagItems();
         bagItems.push(item);
-        AsyncStorage.setItem(keyStore, JSON.stringify(bagItems));
+        AsyncStorage.setItem('@meal_key', JSON.stringify(bagItems));
     }
         
     const getBagItems = async () => {
-        let currentBag = await AsyncStorage.getItem(keyStore);
+        let currentBag = await AsyncStorage.getItem('@meal_key');
         return currentBag ? JSON.parse(currentBag) : [];
     }
 
