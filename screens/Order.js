@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { images } from '../datas/images';
 import { forest } from '../styles/colors';
 import { BreakfastStyle } from '../styles/breakfastStyle';
@@ -25,7 +25,17 @@ const Order = ({ openOrder }) => {
             setMyBag(parsedData);
             return parsedData
         });
-    }     
+    }  
+    
+    const removeData = (id) => {
+        AsyncStorage.getItem('@meal_Key')
+            .then((data => {
+                const parsedData = JSON.parse(data);
+                const newData = parsedData.filter(item => item.id !== id);
+                AsyncStorage.setItem('@meal_Key', JSON.stringify(newData));
+                setMyBag(newData);
+            }))
+    }
 
     useEffect(()=> {
         getData();     
@@ -50,6 +60,7 @@ const Order = ({ openOrder }) => {
                                 <Text style={styles.mealPrice}> {itemData.item.price}€ </Text>
                             </View>
                         </View> 
+                        <AntDesign name="minuscircleo" size={28} color={'firebrick'} style={styles.deleteItem} onPress={()=> removeData(itemData.item.id)} />
                     </View>
                 }
                 keyExtractor={item => item.id}
@@ -95,13 +106,21 @@ const styles = StyleSheet.create({
     },
     bagData: {
         flexDirection: 'row',
-        minWidth: '80%',
-        marginVertical: 10
+        alignItems: 'center',
+        minWidth: '85%',
+        marginVertical: 15,
+        // borderWidth: 1,
+        // borderColor: forest
     },
     bagDetail: {
-        marginLeft: 20,
+        marginLeft: 10,
         justifyContent: 'center',
-        width: '58%'
+        width: '55%',
+        // borderWidth: 1,
+        // borderColor: forest
+    },
+    deleteItem: {
+        marginLeft: 25
     },
     mealName: {
         color: forest,
