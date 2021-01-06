@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Button } from 'react-native';
 import Lunch from './Lunch';
 import Dessert from './Dessert';
-import { pumpkin, forest } from '../styles/colors'
+import { pumpkin, forest } from '../styles/colors';
 
-const Home = () => {
+
+const Home = ({ navigation }) => {
 
     const [lunchVisible, setLunchVisible] = useState(false);
     const [dessertVisible, setDessertVisible] = useState(false);
@@ -33,6 +34,11 @@ const Home = () => {
             <Text style={{...styles.menuText, ...styles.dessertText}}>Dessert</Text>
         </TouchableOpacity>
       </View>
+
+      {/* <Button
+        title="Go to Order"
+        onPress={() => navigation.navigate('Order')}
+      /> */}
       </>
     );
 }
