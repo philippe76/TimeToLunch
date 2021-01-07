@@ -6,11 +6,9 @@ import { images } from '../datas/images';
 import { forest } from '../styles/colors';
 import { DessertStyle } from '../styles/dessertStyle';
 import AddButton from '../components/AddButton';
-import Header from '../components/Header';
 
 
-
-const Order = ({ openOrder, mealType }) => {
+const Order = ({ openOrder }) => {
 
     // const [myLunchBag, setMyLunchBag] = useState([]);
     // const [myDessertBag, setMyDessertBag] = useState([]);
@@ -50,7 +48,7 @@ const Order = ({ openOrder, mealType }) => {
 
     return (
         <>
-        <Header />
+        {/* <Header /> */}
         <View style={styles.container}>
             <View style={styles.bagHeader}>
                 <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>

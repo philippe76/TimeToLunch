@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import * as Font from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Home from './screens/Home';
+import Header from './components/Header'
 
 
 
@@ -19,9 +20,7 @@ export default function App() {
 
   if (fontsLoaded) {
     return (
-
           <Home />
-
     )
   }
 

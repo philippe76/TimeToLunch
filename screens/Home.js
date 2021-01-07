@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Modal, Button } from 'react-native';
 import Lunch from './Lunch';
 import Dessert from './Dessert';
-import Header from '../components/Header'
 import { pumpkin, forest } from '../styles/colors';
-
+import Header from '../components/Header';
 
 const Home = ({ navigation }) => {
 
@@ -12,10 +11,9 @@ const Home = ({ navigation }) => {
     const [dessertVisible, setDessertVisible] = useState(false);
 
     return (
-        <>
-        <Header />
+      <>
+      <Header color={pumpkin} backColor='#f0f0f0'/>
       <View style={styles.container}>  
-
         <View style={styles.logoContainer}>
             <Text style={styles.logoTitle}>Sweet Home</Text>    
         </View>  
