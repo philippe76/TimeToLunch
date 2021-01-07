@@ -1,14 +1,20 @@
-import React from 'react';
-import { StyleSheet, View, Text, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, View, Text, FlatList, Modal } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from '../components/MenuCard';
 import { dessertDatas } from '../datas/dessertData';
 import { forest, pumpkin } from '../styles/colors';
+import Header from '../components/Header';
+import Order from './Order';
 
 
 const Dessert = ({modal}) => {
+
+    const [openOrder, setOpenOrder] = useState(false);
+
     return (
         <View style={styles.dessertContainer}>
+            <Header openOrderModal={setOpenOrder}/>
             <View style={styles.dessertHeader}>
                 <Text style={styles.dessertTitle}>Dessert</Text>
                 <MaterialIcons name='keyboard-backspace' size={30} color={pumpkin} onPress={() => modal(false)}/>
@@ -25,6 +31,12 @@ const Dessert = ({modal}) => {
                 /> }                   
                 keyExtractor={item => item.id}
             />
+            <Modal visible={openOrder}>
+                <Order 
+                    openOrder={setOpenOrder} 
+                    mealType={mealType} 
+                />
+            </Modal>
 
         </View>
     )

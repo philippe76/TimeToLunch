@@ -6,6 +6,7 @@ import { images } from '../datas/images';
 import { forest } from '../styles/colors';
 import { DessertStyle } from '../styles/dessertStyle';
 import AddButton from '../components/AddButton';
+import Header from '../components/Header';
 
 
 
@@ -48,6 +49,8 @@ const Order = ({ openOrder, mealType }) => {
     },[myBag])
 
     return (
+        <>
+        <Header />
         <View style={styles.container}>
             <View style={styles.bagHeader}>
                 <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
@@ -86,6 +89,7 @@ const Order = ({ openOrder, mealType }) => {
             </View>
 
         </View>
+        </>
     )
 }
 

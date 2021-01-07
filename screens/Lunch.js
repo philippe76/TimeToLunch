@@ -4,12 +4,14 @@ import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from '../components/MenuCard';
 import { lunchDatas } from '../datas/lunchData';
 import { pumpkin, forest } from '../styles/colors';
+import Header from '../components/Header';
 
 
 const Lunch = ({modal}) => {
 
     return (
         <View style={styles.lunchContainer}>
+            <Header />
             <View style={styles.lunchHeader}>
                 <Text style={styles.lunchTitle}>Lunch</Text>
                 <MaterialIcons name='keyboard-backspace' size={30} color={forest} onPress={() => modal(false)}/>
