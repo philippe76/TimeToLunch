@@ -9,7 +9,7 @@ import AddButton from '../components/AddButton';
 import Header from '../components/Header';
 
 
-const Order = ({ openOrder }) => {
+const Order = () => {
 
     // const [myLunchBag, setMyLunchBag] = useState([]);
     // const [myDessertBag, setMyDessertBag] = useState([]);
@@ -48,15 +48,8 @@ const Order = ({ openOrder }) => {
     },[myBag])
 
     return (
-        <>
-
         <View style={styles.container}>
             <Header title={'My Bag'} color={forest} backColor={'#f0f0f0'} topPad={20}  justify={'space-around'} />
-            {/* <View style={styles.bagHeader}>
-                <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
-                <Text style={styles.title}> My Bag </Text>
-            </View> */}
-            
             <FlatList 
                 data={myBag}
                 renderItem={ itemData => 
@@ -87,9 +80,7 @@ const Order = ({ openOrder }) => {
                     addTo={deleteData}
                 />
             </View>
-
         </View>
-        </>
     )
 }
 
@@ -118,16 +109,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         minWidth: '85%',
-        marginVertical: 15,
-        // borderWidth: 1,
-        // borderColor: forest
+        marginVertical: 15
     },
     bagDetail: {
         marginLeft: 10,
         justifyContent: 'center',
-        width: '55%',
-        // borderWidth: 1,
-        // borderColor: forest
+        width: '55%'
     },
     deleteItem: {
         marginLeft: 25

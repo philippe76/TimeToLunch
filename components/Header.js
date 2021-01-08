@@ -10,7 +10,13 @@ const Header = ({ justify, topPad, title, backColor, color }) => {
     const [openHome, setOpenHome] = useState(false);
 
     return (
-        <View style={{...styles.headerContainer, backgroundColor:backColor, borderBottomColor:color, paddingTop: topPad, justifyContent: justify}}>
+        <View style={{
+            ...styles.headerContainer, 
+            backgroundColor:backColor, 
+            borderBottomColor:color, 
+            paddingTop: topPad, 
+            justifyContent: justify
+        }}>
             <Text style={{...styles.headerTitle, color:color}}> {title} </Text>
             <Entypo name="home" color={color}  size={33} onPress={()=>setOpenHome(true)}/>   
             <FontAwesome5 name="shopping-bag" color={color} size={30} onPress={()=>setOpenOrder(true)}/>  

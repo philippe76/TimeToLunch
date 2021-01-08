@@ -1,21 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from '../components/MenuCard';
 import { dessertDatas } from '../datas/dessertData';
 import { forest, pumpkin } from '../styles/colors';
 import Header from '../components/Header';
 
-const Dessert = ({modal}) => {
+const Dessert = () => {
 
     return (
         <View style={styles.dessertContainer}>
-        <Header  title={'Dessert'}  color={pumpkin} backColor={forest} topPad={20}  justify={'space-around'} />
-            {/* <View style={styles.dessertHeader}>
-                <Text style={styles.dessertTitle}>Dessert</Text>
-                <MaterialIcons name='keyboard-backspace' size={30} color={pumpkin} onPress={() => modal(false)}/>
-            </View> */}
-
+            <Header  title={'Dessert'}  color={pumpkin} backColor={forest} topPad={20}  justify={'space-around'} />
             <FlatList 
                 data={dessertDatas}
                 renderItem={ itemData => <MenuCard 
@@ -27,7 +21,6 @@ const Dessert = ({modal}) => {
                 /> }                   
                 keyExtractor={item => item.id}
             />
-
         </View>
     )
 }
