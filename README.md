@@ -25,9 +25,9 @@ Thanks to [Olga Vajagić](https://dribbble.com/shots/14820779--App) for the whol
 
 <br/>
 
-<img src='assets/ReadMe/Screenshot1.jpg'> &ensp; &ensp; <img src='assets/ReadMe/Screenshot2.jpg'> &ensp; &ensp; <img src='assets/ReadMe/Screenshot5.jpg'> &ensp; &ensp;
+<img src='assets/ReadMe/Screenshot1.jpg'> &ensp; &ensp; &ensp; &ensp; <img src='assets/ReadMe/Screenshot2.jpg'> &ensp; &ensp; &ensp; &ensp; <img src='assets/ReadMe/Screenshot5.jpg'>
 
 <br />
 <br />
 
-<img src='assets/ReadMe/Screenshot3.jpg'> &ensp; &ensp; <img src='assets/ReadMe/Screenshot4.jpg'> &ensp; &ensp;<img src='assets/ReadMe/Screenshot6.jpg'>
+<img src='assets/ReadMe/Screenshot3.jpg'> &ensp; &ensp; &ensp; &ensp; <img src='assets/ReadMe/Screenshot4.jpg'> &ensp; &ensp; &ensp; &ensp; <img src='assets/ReadMe/Screenshot6.jpg'>
