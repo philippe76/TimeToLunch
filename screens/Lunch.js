@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import MenuCard from '../components/MenuCard';
@@ -8,13 +8,15 @@ import Header from '../components/Header';
 
 const Lunch = ({modal}) => {
 
+    const [homeVisible, setHomeVisible] = useState(false)
+
     return (
         <View style={styles.lunchContainer}>
-            <Header color={forest} backColor={pumpkin}/>
-            <View style={styles.lunchHeader}>
+            <Header title={'Lunch'} color={forest} backColor={pumpkin} topPad={20} justify={'space-around'} />
+            {/* <View style={styles.lunchHeader}>
                 <Text style={styles.lunchTitle}>Lunch</Text>
                 <MaterialIcons name='keyboard-backspace' size={30} color={forest} onPress={() => modal(false)}/>
-            </View>
+            </View> */}
 
             <FlatList 
                 data={lunchDatas}
@@ -34,15 +36,15 @@ const Lunch = ({modal}) => {
 const styles = StyleSheet.create({
     lunchContainer: {
         backgroundColor: pumpkin,
-        flex: 1 
+        flex: 1
     },
-    lunchHeader: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'baseline',
-        margin: 20,
-        marginBottom: 30
-    },
+    // lunchHeader: {
+    //     flexDirection: 'row',
+    //     justifyContent: 'space-between',
+    //     alignItems: 'baseline',
+    //     margin: 20,
+    //     marginBottom: 30
+    // },
     lunchTitle: {
         fontSize: 35,
         fontFamily: 'CrimsonText-SemiBold',

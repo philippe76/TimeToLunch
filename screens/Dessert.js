@@ -10,11 +10,11 @@ const Dessert = ({modal}) => {
 
     return (
         <View style={styles.dessertContainer}>
-        <Header color={pumpkin} backColor={forest}/>
-            <View style={styles.dessertHeader}>
+        <Header  title={'Dessert'}  color={pumpkin} backColor={forest} topPad={20}  justify={'space-around'} />
+            {/* <View style={styles.dessertHeader}>
                 <Text style={styles.dessertTitle}>Dessert</Text>
                 <MaterialIcons name='keyboard-backspace' size={30} color={pumpkin} onPress={() => modal(false)}/>
-            </View>
+            </View> */}
 
             <FlatList 
                 data={dessertDatas}

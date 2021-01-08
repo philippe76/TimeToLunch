@@ -3,9 +3,10 @@ import { StyleSheet, View, Text, Image, FlatList } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { MaterialIcons, AntDesign } from '@expo/vector-icons';
 import { images } from '../datas/images';
-import { forest } from '../styles/colors';
+import { pumpkin, forest } from '../styles/colors';
 import { DessertStyle } from '../styles/dessertStyle';
 import AddButton from '../components/AddButton';
+import Header from '../components/Header';
 
 
 const Order = ({ openOrder }) => {
@@ -48,12 +49,13 @@ const Order = ({ openOrder }) => {
 
     return (
         <>
-        {/* <Header /> */}
+
         <View style={styles.container}>
-            <View style={styles.bagHeader}>
+            <Header title={'My Bag'} color={forest} backColor={'#f0f0f0'} topPad={20} />
+            {/* <View style={styles.bagHeader}>
                 <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
                 <Text style={styles.title}> My Bag </Text>
-            </View>
+            </View> */}
             
             <FlatList 
                 data={myBag}
