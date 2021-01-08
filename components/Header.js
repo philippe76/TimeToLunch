@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
-        // justifyContent: 'space-around',
         paddingBottom: 15,
         marginBottom: 40
     },

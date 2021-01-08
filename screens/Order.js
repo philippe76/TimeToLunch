@@ -51,7 +51,7 @@ const Order = ({ openOrder }) => {
         <>
 
         <View style={styles.container}>
-            <Header title={'My Bag'} color={forest} backColor={'#f0f0f0'} topPad={20} />
+            <Header title={'My Bag'} color={forest} backColor={'#f0f0f0'} topPad={20}  justify={'space-around'} />
             {/* <View style={styles.bagHeader}>
                 <MaterialIcons name='keyboard-backspace' size={30} style={styles.getBack} color={forest} onPress={() =>  openOrder(false)}/>
                 <Text style={styles.title}> My Bag </Text>

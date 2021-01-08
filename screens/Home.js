@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from 'react-native';
-import Lunch from './Lunch';
-import Dessert from './Dessert';
+import { StyleSheet, Text, View, TouchableOpacity, Modal, Linking } from 'react-native';
+import { Octicons } from '@expo/vector-icons';
 import { pumpkin, forest } from '../styles/colors';
 import Header from '../components/Header';
+import Lunch from './Lunch';
+import Dessert from './Dessert';
 
 const Home = () => {
 
@@ -13,7 +14,13 @@ const Home = () => {
     return (
       <>
         <View style={styles.container}>
-        <Header  color={pumpkin} backColor={'#f0f0f0'} topPad={20} justify={'space-between'} /> 
+        <Header 
+          title={<Octicons name='file-code' size={30} onPress={() => Linking.openURL('https://github.com/philippe76/TimeToLunch')}/>} 
+          color={pumpkin} 
+          backColor={'#f0f0f0'} 
+          topPad={20} 
+          justify={'space-around'} 
+        /> 
           <View style={styles.logoContainer}>
               <Text style={styles.logoTitle}>Sweet Home</Text>    
           </View>  
